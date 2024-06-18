@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --hue: 240;
+  --bg-color: hsl(var(--hue), 97%, 100%);
+  --bg-color-button: hsl(var(--hue), 9%, 89%);
+  --bg-color-button-secondary: hsl(calc(var(--hue) - 46), 97%, 31%);
+  --text-color-button-secondary: white;
+  --text-color: hsl(var(--hue), 6%, 21%);
+  font-size: clamp(40%, 1% + 2vw, 62.5%);
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  display: grid;
+  place-content: center;
+  font-size: 1.6rem;
+  height: 100vh;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19rem;
+}
+
+.wrapper-timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-timer .timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-timer .timer span {
+  font-size: 12.6rem;
+  text-align: center;
+  font-weight: 500;
+  display: block;
+}
+
+.wrapper-timer .controls {
+  display: flex;
+  gap: 4rem;
+}
+
+.wrapper-timer .controls button {
+  font-size: 4.8rem;
+  background-color: transparent;
+}
+
+.wrapper-timer .controls button.active {
+  transform: scale(1.2);
+  color: var(--bg-color-button-secondary);
+}
+
+.cards-sound {
+  display: grid;
+  grid-template-columns: repeat(2, 13.8rem);
+  gap: 3.2rem;
+}
+
+.cards-sound button {
+  width: 13.8rem;
+  height: 15.2rem;
+  border-radius: 2.8rem;
+  background-color: transparent;
+}
+
+.cards-sound button svg path:nth-child(1) {
+  fill: var(--bg-color-button);
+}
+
+.cards-sound button svg path:nth-child(2) {
+  fill: var(--text-color);
+}
+
+.cards-sound button.active svg path:nth-child(1),
+.cards-sound button:hover svg path:nth-child(1) {
+  fill: var(--bg-color-button-secondary);
+}
+
+.cards-sound button.active svg path:nth-child(2),
+.cards-sound button:hover svg path:nth-child(2) {
+  fill: var(--text-color-button-secondary);
+}
+
+.wrapper-timer .controls button.active.ph-pause-circle {
+  color: var(--text-color);
+  transform: scale(1);
+}
+
+@media (max-width: 900px) {
+  #app {
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  .cards-sound {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .cards-sound button {
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background-color: transparent;
+  }
+}

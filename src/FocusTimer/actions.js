@@ -63,7 +63,6 @@ export function decrementMinutesTimer() {
 }
 
 export function toggleMusic(element) {
-  console.log(element);
   const audioElement = getAudioElement(element)
   const progressBar = document.getElementById("progressBar");
 

@@ -48,7 +48,13 @@ export function addMinutesTimer() {
 export function decrementMinutesTimer() {
   sounds.click.play()
   let minutes = Number(el.minutes.textContent)
-  minutes -= 5
+
+  if (minutes <= 5) {
+    minutes--
+  } else {
+    minutes -= 5
+  }
+
   if (minutes < 0) {
     minutes = 0
   }
@@ -56,13 +62,52 @@ export function decrementMinutesTimer() {
   timer.updateDisplay(minutes)
 }
 
-export function toggleMusic() {
-  state.isMute = document.documentElement.classList.toggle("music-on")
+export function toggleMusic(element) {
+  console.log(element);
+  const audioElement = getAudioElement(element)
+  const progressBar = document.getElementById("progressBar");
 
-  if(state.isMute){
-    sounds.floresta.play()
-    return
+  if((state.musicActual && state.musicActual == audioElement) || (state.musicActual && state.musicActual !== audioElement)){
+    state.musicActual.pause()
   }
+
+  if(audioElement) {
+    audioElement.play()
+    state.musicActual = audioElement
+
+    audioElement.addEventListener("timeupdate", () => {
+      const currentTime = audioElement.currentTime;
+      const duration = audioElement.duration;
   
-  sounds.element.pause()
+      // Atualiza a posição da barra de progresso
+      const progress = (currentTime / duration) * 100;
+      progressBar.value = progress;
+  });
+    return
+  } else {
+    alert("Audio indisponível no momento")
+    audioElement.pause()
+    state.musicActual = null
+  }
+
+
+}
+
+function getAudioElement(action) {
+  switch (action) {
+      case "click":
+          return sounds.click;
+      case "cafeteria":
+          return sounds.cafeteria;
+      case "chuva":
+          return sounds.chuva;
+      case "floresta":
+          return sounds.floresta;
+      case "lareira":
+          return sounds.lareira;
+      case "finalizado":
+          return sounds.finalizado;
+      default:
+          return null;
+  }
 }

@@ -112,6 +112,15 @@ button:hover {
   transform: scale(1);
 }
 
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  font-weight: 500;
+}
+
 @media (max-width: 900px) {
   #app {
     flex-direction: column;

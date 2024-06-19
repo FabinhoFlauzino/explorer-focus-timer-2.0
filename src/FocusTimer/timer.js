@@ -4,6 +4,8 @@ import { stopTimer } from "./actions.js";
 import { finalizado } from "./sounds.js";
 
 export function countdown () {
+  clearInterval(state.countdownId)
+
   if (!state.isRunnig) {
     return
   }
@@ -26,7 +28,7 @@ export function countdown () {
 
   updateDisplay(minutes, seconds)
 
-  setTimeout(() => countdown(), 1000)
+  state.countdownId = setTimeout(() => countdown(), 1000)
 }
 
 export function updateDisplay (minutes, seconds) {
